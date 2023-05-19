@@ -1,10 +1,9 @@
-import { startConfetti, stopConfetti, removeConfetti } from "./confetti.js";
+import { startConfetti, stopConfetti, removeConfetti } from './confetti.js';
 
 const playerScoreEl = document.getElementById('playerScore');
 const playerChoiceEl = document.getElementById('playerChoice');
 const computerScoreEl = document.getElementById('computerScore');
 const computerChoiceEl = document.getElementById('computerChoice');
-const resultText = document.getElementById('resultText');
 
 const playerRock = document.getElementById('playerRock');
 const playerPaper = document.getElementById('playerPaper');
@@ -18,7 +17,8 @@ const computerScissors = document.getElementById('computerScissors');
 const computerLizard = document.getElementById('computerLizard');
 const computerSpock = document.getElementById('computerSpock');
 
-const allGameIcons = document.querySelectorAll('.far')
+const allGameIcons = document.querySelectorAll('.far');
+const resultText = document.getElementById('resultText');
 
 const choices = {
   rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
@@ -32,7 +32,7 @@ let playerScoreNumber = 0;
 let computerScoreNumber = 0;
 let computerChoice = '';
 
-// Reset all 'selected' icons
+// Reset all 'selected' icons, remove confetti
 function resetSelected() {
   allGameIcons.forEach((icon) => {
     icon.classList.remove('selected');
@@ -41,7 +41,7 @@ function resetSelected() {
   removeConfetti();
 }
 
-// Reset Score & playerChoice/computerChoice
+// Reset score & playerChoice/computerChoice
 function resetAll() {
   playerScoreNumber = 0;
   computerScoreNumber = 0;
@@ -72,7 +72,7 @@ function computerRandomChoice() {
 
 // Add 'selected' styling & computerChoice
 function displayComputerChoice() {
-  switch(computerChoice) {
+  switch (computerChoice) {
     case 'rock':
       computerRock.classList.add('selected');
       computerChoiceEl.textContent = ' --- Rock';
@@ -106,11 +106,11 @@ function updateScore(playerChoice) {
     const choice = choices[playerChoice];
     if (choice.defeats.indexOf(computerChoice) > -1) {
       startConfetti();
-      resultText.textContent = "You Won!";
+      resultText.textContent = 'You Won!';
       playerScoreNumber++;
       playerScoreEl.textContent = playerScoreNumber;
     } else {
-      resultText.textContent = "You Lost!";
+      resultText.textContent = 'You Lost!';
       computerScoreNumber++;
       computerScoreEl.textContent = computerScoreNumber;
     }
@@ -129,7 +129,7 @@ function checkResult(playerChoice) {
 function select(playerChoice) {
   checkResult(playerChoice);
   // Add 'selected' styling & playerChoice
-  switch(playerChoice) {
+  switch (playerChoice) {
     case 'rock':
       playerRock.classList.add('selected');
       playerChoiceEl.textContent = ' --- Rock';
@@ -157,8 +157,4 @@ function select(playerChoice) {
 window.select = select;
 
 // On startup, set initial values
-resetAll(); 
-
-
-
-
+resetAll();
